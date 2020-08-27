@@ -1,0 +1,28 @@
+/* CSS Document --for Tabbed User Interface*/
+    #panel3{
+      font-size:10pt;
+      margin-right:auto;
+      margin-left:auto;
+      width:60%;
+    }
+
+    .tab{
+		 display:none;
+	}
+
+	#divLogo {
+	     display:none;
+	}
+
+    #MenuDiv {
+         display: none;
+    }
+    .dTree{
+         display: none;
+    }
+    #NoExampleMsg{
+         display: none;
+    }
+    #toMenu{
+         display: none;
+    }

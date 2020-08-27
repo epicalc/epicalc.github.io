@@ -1,0 +1,231 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<TITLE>OpenEpi - Toolkit Shell for Developing New Applications</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+<META name="viewport" content="width=800, initial-scale=1, maximum-scale=2"> 
+<META NAME="author" CONTENT="Kevin M. Sullivan, Andrew G. Dean, and Roger A. Mir">
+                                   <!-- --------------------- -->
+
+<link rel="stylesheet" href="../css/TabbedUI.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../css/TabbedUI-print.css" TYPE="text/css" MEDIA="print">
+<link rel="styleSheet" href="../css/dtree.css" type="text/css" >
+
+<script language="JavaScript" type="text/JavaScript">
+  var basefilename="ANOVA";  //The name from which other filenames are constructed in AppHelper.js
+                              //******For a new application, change to a new, unique name********
+</script>
+								
+<!-- From the IncludeFiles.js section, ancillary modules are included that contain necessary code.  Generally you will not
+have to alter code in these modules, but they are all available as part of the source, and are listed in IncludeFiles.js. -->
+
+<SCRIPT language="JavaScript" src="../js/IncludeFiles.js" type=text/JavaScript></SCRIPT>
+								
+									<!-- --------------------- -->
+
+<script language="JavaScript" type="text/JavaScript">
+
+//Some global variables 
+
+var v11 = 0;
+var v22 = 0;
+var vorr = 0;
+
+function configureInput()
+{//Indented sections are the ones to be changed to configure a new application
+		var crows=12; 
+		//number of rows down the table, not counting the header (title)
+		var ccols=6;
+		//number of cells or columns across the table
+		var x=15;
+		//pixels from the left side of the page where table starts
+		var y=20;
+		//pixels down from top of page where table starts
+		var w=500;
+		//width of table in pixels
+		var h=350;
+		//height of table in pixels
+
+//"Input" is an object class found in OECommands.js, which must be in the list of js files
+// at the beginning of this module.
+//First create a new Input object called intable.
+intable=new Input;
+//Then using intable, parse the row-by-row commands and return the results
+//in the form of commands for Etable in the two arrays 
+with (intable)
+ {       
+		 //HERE ARE THE COMMANDS THAT SET UP THE DATA ENTRY TABLE.
+		 //They are parsed by the corresponding functions in the Input class
+		 //to produce a series of commands for Etable, generally one for each
+		 //cell rather than row by row.  
+		  lock("labels");
+		  newtable(crows,ccols,w,h,x,y);
+		  title("<span style='margin-bottom:2px;font-weight:bold;'>Analysis of Variance (ANOVA)</span>");
+		  newrow("label:span1:c:","label:span1:c:N","label:span1:c:Mean","label:span1:c:Std. Dev.","label:span1:c:(or)","label:span1:c:Std. Error");
+		  newrow("label:span1:c:Group 1","c:data:63","c:data:55.1","c:data:10.93","label:span1:c:","c:data:");
+		  newrow("label:span1:c:Group 2","c:data:17","c:data:47.59","c:data:7.08","label:span1:c:","c:data:");
+		  newrow("label:span1:c:Group 3","c:data:15","c:data:49.4","c:data:10.2","label:span1:c:","c:data:");
+		  newrow("label:span1:c:Group 4","c:data:","c:data:","c:data:","label:span1:c:","c:data:");
+		  newrow("label:span1:c:Group 5","c:data:","c:data:","c:data:","label:span1:c:","c:data:");
+		  newrow("label:span1:c:Group 6","c:data:","c:data:","c:data:","label:span1:c:","c:data:");
+		  newrow("label:span1:c:Group 7","c:data:","c:data:","c:data:","label:span1:c:","c:data:");
+		  newrow("label:span1:c:Group 8","c:data:","c:data:","c:data:","label:span1:c:","c:data:");
+		  newrow("label:span1:c:Group 9","c:data:","c:data:","c:data:","label:span1:c:","c:data:");
+		  newrow("label:span1:c:Group 10","c:data:","c:data:","c:data:","label:span1:c:","c:data:");
+		  newrow("label:span6:c:<FONT color=brown><Font size=2>Enter your summary data in any respective group, no need to be consecutive.</FONT>");
+  etablecmds1=precmds;
+  etablecmds2=postcmds;
+  }
+}
+
+
+function checkcode(r,c,entry)
+{
+  //This function, if it exists, is called by ETable after every entry into a data
+  //cell, giving an opportunity to evaluate and possibly modify the entry, or to
+  //take some other action based upon it.  Here the function is set up to 
+  //insure that only numbers are put in the cells and that blank entries become 
+  //zeros.  Conditional statements, such as the switch statement can be used
+  //to write code that applies only to particular cells.
+  //To see what row and column entries are made in, uncomment the following line:
+  //alert("Row="+r+"  Col=" + c + " Value: " + entry)
+      
+   var temp; var temp1; var n;  var S;  var P;
+   //If entry contains a comma, correct mistake
+   //If entry contains a comma instead of a period, change it to a period
+   // entry=entry.replace(",",".");  //CAUSES BUG
+
+   var e=parseFloat(entry);
+   //myTable.moveUpDown=true; //to lower the cursor after the value of current cell was entered.
+   //The leftmost cell is column 0, and the span2 value of the first cell puts the 
+   //data in column 2, and the same priciple applies to the uppermost row of data field which is row '0'.
+   
+
+   if (isNaN(e)) 
+     { return ("") }
+	
+	/*
+	// level of significance;
+		// (r, c, setting);
+		if ((r == 0 ) && ( c == 3) && (e!=20 && e!=25 && e!=30&& e!=35&& e!=40&& e!=45&& e!=50&& e!=55&& e!=60&& e!=65&& e!=70&& e!=75
+		&& e!=80 && e!=85&& e!=90&& e!=95&& e!=98&& e!=99&& e!=99.5&& e!=99.8&& e!=99.9&& e!=99.95&& e!=99.98&& e!=99.99 ))
+		{
+		alert("Oh! The confidence interval you selected is not available. Please select others.");
+		return "";
+		}
+	*/
+	
+	// Converting between SD and SE;
+	// for group-1;
+	//if SD is entered;
+	 if ( (r == 1 ) && ( c == 3) && ( e != 0) ){temp = "";setCellValue(r, c+2, temp);}
+	//if SE is entered;
+	 if ( (r == 1 ) && ( c == 5) && ( e != 0) ) {temp = ""; setCellValue(r, c-2, temp);}
+
+	// for group-2;
+	//if SD is entered;
+	 if ( (r == 2 ) && ( c == 3) && ( e != 0) ){temp = ""; setCellValue(r, c+2, temp);	}
+	//if SE is entered;
+	 if ( (r == 2 ) && ( c == 5) && ( e != 0) ) {temp = ""; setCellValue(r, c-2, temp);}
+		
+	// for group-3;
+	//if SD is entered;
+	 if ( (r == 3 ) && ( c == 3) && ( e != 0) ){
+		temp = ""; 
+		setCellValue(r, c+2, temp);
+		}	
+	//if SE is entered;
+	 if ( (r == 3 ) && ( c == 5) && ( e != 0) ) { 
+		temp = ""; 
+	  	setCellValue(r, c-2, temp);
+		}	
+	
+	// for group-4;
+	//if SD is entered;
+	 if ( (r == 4 ) && ( c == 3) && ( e != 0) ){temp = ""; setCellValue(r, c+2, temp);	}
+	//if SE is entered;
+	 if ( (r == 4 ) && ( c == 5) && ( e != 0) ) {temp = ""; setCellValue(r, c-2, temp); }
+	 
+	//if SD is entered;
+	 if ( (r == 5 ) && ( c == 3) && ( e != 0) ){temp = ""; setCellValue(r, c+2, temp);	}
+	//if SE is entered;
+	 if ( (r == 5 ) && ( c == 5) && ( e != 0) ) {temp = ""; setCellValue(r, c-2, temp); }
+	 
+	//if SD is entered;
+	 if ( (r == 6 ) && ( c == 3) && ( e != 0) ){temp = ""; setCellValue(r, c+2, temp);	}
+	//if SE is entered;
+	 if ( (r == 6 ) && ( c == 5) && ( e != 0) ) {temp = ""; setCellValue(r, c-2, temp); }
+	 	 
+	//if SD is entered;
+	 if ( (r == 7 ) && ( c == 3) && ( e != 0) ){temp = ""; setCellValue(r, c+2, temp);	}
+	//if SE is entered;
+	 if ( (r == 7 ) && ( c == 5) && ( e != 0) ) {temp = ""; setCellValue(r, c-2, temp); }
+	 	 
+	//if SD is entered;
+	 if ( (r == 8 ) && ( c == 3) && ( e != 0) ){temp = ""; setCellValue(r, c+2, temp);	}
+	//if SE is entered;
+	 if ( (r == 8 ) && ( c == 5) && ( e != 0) ) {temp = ""; setCellValue(r, c-2, temp); }
+		 
+	//if SD is entered;
+	 if ( (r == 9 ) && ( c == 3) && ( e != 0) ){temp = ""; setCellValue(r, c+2, temp);	}
+	//if SE is entered;
+	 if ( (r == 9 ) && ( c == 5) && ( e != 0) ) {temp = ""; setCellValue(r, c-2, temp); }
+	 	
+	//if SD is entered;
+	 if ( (r == 10 ) && ( c == 3) && ( e != 0) ){temp = ""; setCellValue(r, c+2, temp);	}
+	//if SE is entered;
+	 if ( (r == 10 ) && ( c == 5) && ( e != 0) ) {temp = ""; setCellValue(r, c-2, temp); }
+}
+
+
+
+function OECalculate(dataArray)
+{
+//Called by the Calculate button in the ETable module.  
+//The data items entered reside in the dataMatrix variable in EntryWin.  They can be
+//retrieved here and used to populate the statistics module that is being constructed. 
+
+outTable=new Output(dataArray);
+with (outTable)
+{ 
+//EntryWin.writeTable(data)
+//Remove the comment from the line above to see a table of the contents of the dataMatrix
+//so that the correct correspondence between the dataMatrix and your stats routine
+//can be set up below.
+//In this section, write some code to extract the needed data from the standard
+//data array produced by the data input module.  Strata have indices starting with
+// 1, and table cells begin with the baseline (e.g., 0 or "no") values in the upper
+// left, in the "E0D0" cell.  Exposure is represented on the left margin and Disease
+// at the top, if this distinction is meaningful.  
+
+			 CalcAnova(data);
+
+//Tell output that we are done
+endtable();
+
+//Retrieve the HTML string, "outTable.s", and make it valid HTML by adding a header
+//and ending tags.  In most cases you would also include a replica of the input
+//table, but Proportion is so simple that the input figures are just included
+//in the title.
+     		//combinedresults = outTable.s;
+}
+//Make a complete page with the input table and the results by combining several strings;
+
+//The results should be an HTML string.  The following function (found in appHelper.js)
+// will add an HTML header, the data table, and ending tags if they are not already present.
+//It then displays the results in a new browser window.  If the third parameter (saveifpossible)
+//is "true", the html output will be saved in a file on the local disk, IF THIS PROGRAM is
+//RUNNING UNDER THE OpenEpiMenu AND OpenEpiMenu is being run from OpenEpiSave.HTA.
+//If any of these conditions are not present, saving will not occur, but there should
+//be no errors.  If the file is saved successfully, a message appears with the filename
+// and location.  
+
+writeResults(outTable.s)
+}
+
+writeFrontEnd(Title,Authors,Description,"");
+//write HTML from a string.  The fourth parameter is the name of the demofile (demonstration file).
+//If there is none, it should be set to "".  If a demofile
+//exists, substitute the variable containing the name of the demofile
+</script>
+<!-- This is the end of the HTML page, believe it or not.  All the tags are written dynamically by writeFrontEnd -->

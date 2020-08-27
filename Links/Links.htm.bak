@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Other Sites About Free Statistical Software</title>
+  <style type="text/css">
+  li,a:link, a:visited, a:active {
+    color:white;
+  }
+  body {
+    background-image: url('../img/Fence2.JPG');
+    background-color: #cccccc;
+  }
+  </style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="4">
+  <tr>
+    <td rowspan="2" bgcolor="#336666">
+    <input type="button"  name="toMenu" id="toMenu" value="Menu" onClick="window.history.back();window.location.href='../Menu/OE_Menu.htm'">
+     </td>
+     <td rowspan="2" bgcolor="#336666">
+    <img src="../img/OpenEpi1.gif" alt="OpenEpi Logo" name="image" width="184" height="51"></td>
+    <td width="100%" bgcolor="#336666"><font color="#eeeeee">
+      <h1 style="margin-left:20%;margin-top:20px;"> Links</h1>
+      </font></td>
+  </tr>
+</table>
+<h1 style="color:yellow;">Links to Other Free Epi and Statistical Software</h1>
+  <div style="color:white;">
+   <ul style="color:white;"> <h3>
+
+	<li><A href='http://statpages.org/'>Other Statistical Calculators</A><br /></li>
+	<li><A href='http://www.cdc.gov/Epiinfo/'>CDC Epi Info Site</A><br /></li>
+    <ul>
+       <li><A href='http://wwwn.cdc.gov/epiinfo/html/prevVersion.htm'>Epi Info 3.5.x--Completely documented and tested</A><br /></li>
+       <li><A href='http://wwwn.cdc.gov/Epiinfo/7/index.htm'>Epi Info 7--C# version for Windows.net--current version</A><br /></li>
+    </ul>
+    <li><A href='http://www.epiinformatics.com/'>EpiInformatics.com</A><br /></li>
+    <ul>
+        <li>Epi Info and OpenEpi in Epidemiology and Clinical Medicine--Book and Teaching Materials by the authors of OpenEpi<br /></li>
+    </ul>
+    <li><A href='http://www.activepi.com'> Active Epi CD/Text</A><br /> </li>
+	<li><A href='http://web1.sph.emory.edu/cdckms/'>Epi Info prototypes: Kevin Sullivan Site</A><br /></li>
+	<li><A href='http://www.pitt.edu/~super1/'>Super Course materials</A> for teaching epidemiology<br /></li>
+	<li><A href='http://www.brixtonhealth.com/'>Brixton Health</A><br /></li>
+	<li><A href='http://www.epidata.dk/'>EpiData--Windows program using Epi 6(DOS)standards</A><br /></li>
+	<li><A href='http://www.bettycjung.net/Epi.htm'>Annotated Epi bibliography</A><br /></li>
+	<li><A href='http://www.epimonitor.net/'>Epi Newsletter</A><br /></li>
+	 <li><A href='http://www.epiinfo.it/'>Italian Epi Info Site</A><br /></li>
+    <li><A href='http://epi.publichealth.nc.gov/'>University of North Carolina Epi Info Teaching Materials</A><br /></li>
+    </h3>
+
+   </ul>
+   </div>
+</body>
+</html>

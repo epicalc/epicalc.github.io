@@ -1,0 +1,233 @@
+/* CSS Document --for Tabbed User Interface*/
+.tab{
+	color: navy;
+	background-color: #ffffff;
+	border: thin solid navy;
+    border-bottom:0px;
+    top: 0px;
+    float: left;
+    height: 26px;
+  /*  width: 100px;   */
+	text-align: center;
+	font: 10pt Verdana,sans-serif;
+    font-weight:bold;
+    margin-bottom:0px;
+    padding-right:2%;
+    padding-left:2%;
+    margin-right:0.5%;
+	cursor: pointer;
+    display: inline;
+    overflow:hidden;
+	}
+
+div#tabDiv{
+  position:relative;
+
+ /* height: 120px;  */
+/*  background-color:blue;    */
+}
+
+.noprint{
+	 }
+
+.panel{
+       /* float: left;*/
+        position: absolute;
+      /*  top: 27px;  */
+		z-index: 1;
+		visibility: hidden;
+	    padding-left: 3%;
+       /* padding-right:2%; */
+		overflow: auto;
+        text-align: justify;
+   /*     width:100%; */  /*was 98%*/
+        height:100%;
+        min-height:95%;
+        border-top: 1px solid black;
+        border-left: 1px solid black;
+ }
+ #panel2{
+   width:100%
+ }
+
+.panel p{
+ font-size:0.9em;
+
+}
+
+  #toMenu{
+    float:left;
+  }
+
+    #divLogo {
+	position:absolute;
+	left: 2%;
+	width: 15%;
+	z-index: 0;
+	top: 0;
+
+	}
+	#btnEnter, #btnDemo {
+		cursor:pointer;
+    }
+
+	#banner strong{
+	 color: white;
+	 background-color: #666666;
+	}
+	#banner a:link{
+	 color: #FFFFFF;
+	/* font-size: small; */
+	 }
+     #banner a:hover {
+	  color: blue;
+	  }
+	  #banner a:active {
+	   color: red;
+	   }
+
+  /*Much of what follows is from "stylin' with CSS" by Charles Wyke-Smith, 2nd ed., New Riders, 2008, Ch 5*/
+  #body{
+    text-align:center; /*IE6 needs this to center the layout in the browser window*/
+  }
+
+ /************************Next two height properties are VERY IMPORTANT.  Without them, IE does very strange things.*******/
+  html, body{
+    height:98%;   /*Important for IE although it seems like nonsense*/
+    width:96%;
+  }
+
+  #mainDiv{
+    height:100%;     /*Important for IE although it seems like nonsense*/
+    width:100%;
+   /* border:solid 1px; */
+    float:left;
+  /*  margin-left:auto; /*centers layout in browser*/
+  /* margin-right:auto; /*centers layout in browser*/
+    text-align:left; /* resets the centering hack for IE6 on the body tag*/
+  }
+/*  #form1
+  {
+    width:80%;
+    margin-bottom:0;
+  }
+ */
+  #MenuDiv{
+    float:left;
+    width:22%;
+    height:98%;
+    overflow:auto;
+
+  }
+
+  #appDiv{
+    float:left;
+    top:0;
+    height: 98%;
+    width:78%;
+  /*  position:relative; */
+    right:0px;
+    top:0px;
+  }
+
+  #appDivInner {
+    float:left;
+    /*position:absolute;   */
+   /* position:relative;*/
+    right:2%;
+  /*  height: auto;  */
+   /* width:auto;  */
+   /* overflow: hidden;  */
+    height:98%;
+    width:100%;
+   /* width:98%; */
+  /*  border:solid 1px;     */
+  /*  overflow:auto;    */
+  }
+  #sumtableDiv{
+    position:relative;
+    left:30px;
+  }
+ 
+  #dataTableDiv{
+    position:relative;
+
+  }
+
+  #Stratum0LayerDiv{
+  /*  box-shadow: 8px 8px 5px #888888;     */
+   /* border:solid 3px red; */
+   /* clip:rect(0px,450px,300px,0px)!important;   */
+    margin: 0 auto;
+  }
+ /*Removing the shadowDiv has bad effects, so let's just set it not to display and to be very small*/
+ #Stratum0ShadowDiv{
+  position:absolute;
+  display: none;
+  width:10px;
+  height:10px;
+  }
+
+
+  #MenuDivInner{
+
+   /*  overflow:auto; */ /*Scroll bars if needed*/
+     /*Hidden will clip oversize elements that would otherwise expand divs and break the layout */
+
+  }
+
+  .column {
+    position:relative;
+    overflow:hidden;
+    float:left;
+    top:0;
+    width:50%;
+    text-decoration: none;
+  }
+  .colHeading{
+    margin-top:6px;
+    margin-left:10px;
+    margin-right:10px;
+    background:#CCCCCC;
+    text-align:center;
+    font-family:arial;
+    font-weight:bold;
+    font-size:12pt;
+  }
+  p {
+    text-decoration: none;
+  }
+
+  #Panel1Col1{
+    text-align:center;
+    font-size:0.9em;
+  }
+  #Panel1Col2{
+    text-align:left;
+    font-size:0.9em;
+  }
+
+  #FooterPanel1{
+    position:relative;
+    clear:both;
+    width: 98%;
+    border:1px;
+    background-color: #CCCCCC;
+    text-align: center;
+  }
+
+ form#form1{
+   width:50%;
+   }
+
+ /*  http://robertnyman.com/2010/03/16/drop-shadow-with-css-for-all-web-browsers/   */
+.shadow {
+	-moz-box-shadow: 5px 5px 5px #000;
+	-webkit-box-shadow: 5px 5px 5px #000;
+	box-shadow: 5px 5px 5px #000;
+	/* For IE 8 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=5, Direction=135, Color='#000000')";
+	/* For IE 5.5 - 7 */
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=5, Direction=135, Color='#000000');
+}
+
